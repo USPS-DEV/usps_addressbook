@@ -5,6 +5,10 @@
 *.tfstate
 *.tfstate.*
 
+addressbook.iml
+target
+
+
 # Crash log files
 crash.log
 crash.*.log
