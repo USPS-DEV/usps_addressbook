@@ -46,7 +46,6 @@ tools {
       stage('5. Application deployment in eks') {
         steps{
           kubeconfig(caCertificate: '', credentialsId: 'k8s-kubeconfig', serverUrl: '') {
-          sh "export KUBE_CONFIG_PATH=~/.kube/config.yaml"
           sh "kubectl apply -f manifest"
           }
          }
