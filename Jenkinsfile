@@ -63,11 +63,11 @@ tools {
       stage ('7. Email Notification') {
          steps{
          mail bcc: 'lawrencetech2013@gmail.com,monkamtanyi@gmail.com', body: '''Build is Over. Check the application using the URL below. 
-         https//abook.shiawslab.com/addressbook-1.0
+         https://abook.teamaconsulting.com/addressbook-1.0/
          Let me know if the changes look okay.
          Thanks,
          Dominion System Technologies,
-         +1 (313) 413-1477''', cc: 'lawrencetech2013@gmail.com', from: '', replyTo: '', subject: 'Application was Successfully Deployed!!', to: 'lawrencetech2013@gmail.com'
+         +234 903 0461 076''', cc: 'lawrencetech2013@gmail.com', from: '', replyTo: '', subject: 'Application was Successfully Deployed!!', to: 'lawrencetech2013@gmail.com'
       }
     }
  }
