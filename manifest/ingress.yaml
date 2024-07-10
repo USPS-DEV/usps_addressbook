@@ -18,7 +18,7 @@ metadata:
 spec:
   ingressClassName: alb
   rules:
-  - host: abook.shiawslab.com
+  - host: addressbook-server-ip-1735823661.eu-west-2.elb.amazonaws.com
     http:
       paths:
       - path: /addressbook-1.0
