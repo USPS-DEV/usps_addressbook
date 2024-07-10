@@ -2,7 +2,7 @@ apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
   name: addressbook-ingress
-  namespace: directory
+  namespace: dev
   annotations:
     alb.ingress.kubernetes.io/scheme: internet-facing
     alb.ingress.kubernetes.io/certificate-arn: arn:aws:acm:eu-west-2:339712828145:certificate/bc574743-1292-4051-8152-77e1646f6655
