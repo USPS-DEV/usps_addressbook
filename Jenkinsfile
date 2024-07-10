@@ -46,6 +46,7 @@ tools {
       stage('5. Application deployment in eks') {
         steps{
           kubeconfig(caCertificate: '', credentialsId: 'k8s-kubeconfig', serverUrl: '') {
+          sh "aws sts assume-role --role-arn arn:aws:iam::339712828145:role/eks_full_access --role-session-name kubelogin"
           sh "kubectl apply -f manifest"
           }
          }
