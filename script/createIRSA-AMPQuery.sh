@@ -1,12 +1,12 @@
 #!/bin/bash -e
-CLUSTER_NAME=dominion-cluster
-SERVICE_ACCOUNT_NAMESPACE=monitoring
+CLUSTER_NAME=usps-cluster
+SERVICE_ACCOUNT_NAMESPACE=dev
 AWS_ACCOUNT_ID=$(aws sts get-caller-identity --query "Account" --output text)
 OIDC_PROVIDER=$(aws eks describe-cluster --name $CLUSTER_NAME --query "cluster.identity.oidc.issuer" --output text | sed -e "s/^https:\/\///")
 SERVICE_ACCOUNT_AMP_QUERY_NAME=amp-iamproxy-query-service-account
 SERVICE_ACCOUNT_IAM_AMP_QUERY_ROLE=amp-iamproxy-query-role
 SERVICE_ACCOUNT_IAM_AMP_QUERY_POLICY=AMPQueryPolicy
-REGION=us-west-2 
+REGION=eu-west-2 
 #
 # Setup a trust policy designed for a specific combination of K8s service account and namespace to sign in from a Kubernetes cluster which hosts the OIDC Idp.
 #
