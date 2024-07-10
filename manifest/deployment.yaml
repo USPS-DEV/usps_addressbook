@@ -2,7 +2,7 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  namespace: directory
+  namespace: dev
   name: addressbook
 spec:
   replicas: 1
@@ -17,6 +17,6 @@ spec:
     spec:
       containers:
       - name: addressbook-container
-        image: 339712828145.dkr.ecr.us-west-2.amazonaws.com/addressbook:1.0.0
+        image: 339712828145.dkr.ecr.eu-west-2.amazonaws.com/addressbook:1.0.0
         ports:
         - containerPort: 8080
