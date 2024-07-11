@@ -1,6 +1,6 @@
 #!/bin/bash -e
 CLUSTER_NAME=usps-cluster
-SERVICE_ACCOUNT_NAMESPACE=dev
+SERVICE_ACCOUNT_NAMESPACE=monitoring
 AWS_ACCOUNT_ID=$(aws sts get-caller-identity --query "Account" --output text)
 OIDC_PROVIDER=$(aws eks describe-cluster --name $CLUSTER_NAME --query "cluster.identity.oidc.issuer" --output text | sed -e "s/^https:\/\///")
 SERVICE_ACCOUNT_AMP_QUERY_NAME=amp-iamproxy-query-service-account
