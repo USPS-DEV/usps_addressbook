@@ -1,10 +1,11 @@
+# Complete Manifest Where in single yml we defined Deployment & Service for SpringApp & PVC(with default  StorageClass),ReplicaSet & Service For Mongo.
 apiVersion: apps/v1
 kind: Deployment
 metadata:
   namespace: dev
   name: addressbook
 spec:
-  replicas:
+  replicas: 1
   selector:
     matchLabels:
       app: addressbook
@@ -31,28 +32,25 @@ apiVersion: v1
 kind: PersistentVolumeClaim
 metadata:
   name: mongodb-pvc
-  namespace: dev
 spec:
   accessModes:
   - ReadWriteOnce
   resources:
     requests:
-      storage: 2Gi
-  storageClassName: gp2
+      storage: 2Gi # Adjust size as per your requirements and AWS storage class limitations
+  storageClassName: gp2 # Replace with your AWS storage class name
+
 ---
 apiVersion: apps/v1
-kind: StatefulSet
+kind: DaemonSet
 metadata:
   name: mongodb
-  namespace: dev
   labels:
     app: mongodb
 spec:
   selector:
     matchLabels:
       app: mongodb
-  serviceName: "mongodb"
-  replicas: 1
   template:
     metadata:
       labels:
@@ -71,21 +69,16 @@ spec:
         volumeMounts:
         - name: mongodb-data
           mountPath: /data/db
-  volumeClaimTemplates:
-  - metadata:
-      name: mongodb-data
-    spec:
-      accessModes: ["ReadWriteOnce"]
-      resources:
-        requests:
-          storage: 2Gi
-      storageClassName: gp2
+      volumes:
+      - name: mongodb-data
+        persistentVolumeClaim:
+          claimName: mongodb-pvc
+
 ---
 apiVersion: v1
 kind: Service
 metadata:
   name: mongo
-  namespace: dev
 spec:
   type: ClusterIP
   selector:
@@ -93,16 +86,3 @@ spec:
   ports:
   - port: 27017
     targetPort: 27017
----
-apiVersion: v1
-kind: Service
-metadata:
-  name: addressbook
-  namespace: dev
-spec:
-  selector:
-    app: addressbook
-  ports:
-  - protocol: TCP
-    port: 8080
-    targetPort: 8080
