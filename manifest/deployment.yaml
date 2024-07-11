@@ -4,7 +4,7 @@ metadata:
   namespace: dev
   name: addressbook
 spec:
-  replicas: 3
+  replicas:
   selector:
     matchLabels:
       app: addressbook
