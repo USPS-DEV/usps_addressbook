@@ -45,15 +45,16 @@ apiVersion: apps/v1
 kind: DaemonSet
 metadata:
   name: mongodb
+  labels:
+    app: mongodb
 spec:
-  serviceName: mongodb
   selector:
     matchLabels:
-      app: addressbook
+      app: mongodb
   template:
     metadata:
       labels:
-        app: addressbook
+        app: mongodb
     spec:
       containers:
       - name: mongodb
@@ -72,6 +73,7 @@ spec:
       - name: mongodb-data
         persistentVolumeClaim:
           claimName: mongodb-pvc
+
 ---
 apiVersion: v1
 kind: Service
