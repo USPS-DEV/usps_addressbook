@@ -1,3 +1,6 @@
+# This script sets up an IAM role and policies for a Kubernetes service account
+# to allow remote write (ingest) permissions for an AWS Managed Prometheus workspace.
+
 #!/bin/bash -e
 CLUSTER_NAME=usps-cluster
 SERVICE_ACCOUNT_NAMESPACE=monitoring

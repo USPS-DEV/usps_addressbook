@@ -1,3 +1,6 @@
+# This script sets up an IAM role and policies for a Kubernetes service account
+# to allow querying metrics permissions for AWS Managed Prometheus workspaces.
+
 #!/bin/bash -e
 CLUSTER_NAME=usps-cluster
 SERVICE_ACCOUNT_NAMESPACE=monitoring

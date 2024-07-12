@@ -1,3 +1,4 @@
+# Manifest file for configuring Ingress to route traffic to the address book application
 apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
@@ -6,7 +7,6 @@ metadata:
   annotations:
     alb.ingress.kubernetes.io/scheme: internet-facing
     alb.ingress.kubernetes.io/certificate-arn: arn:aws:acm:eu-west-2:339712828145:certificate/bf7327a4-c3ef-4bf9-8157-d31e9182a616
-    #   alb.ingress.kubernetes.io/subnets:
     alb.ingress.kubernetes.io/listen-ports: '[{"HTTPS": 443}]'
     alb.ingress.kubernetes.io/target-type: ip
     alb.ingress.kubernetes.io/healthcheck-port: "443"
@@ -17,6 +17,7 @@ metadata:
     alb.ingress.kubernetes.io/target-group-attributes: deregistration_delay.timeout_seconds=30
 spec:
   ingressClassName: alb
+  # Route traffic based on hostname and path
   rules:
   - host: abook.teamaconsulting.com
     http:

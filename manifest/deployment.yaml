@@ -20,13 +20,13 @@ spec:
         image: 339712828145.dkr.ecr.eu-west-2.amazonaws.com/addressbook:1.0.0
         ports:
         - containerPort: 8080
-        env:
-        - name: MONGO_DB_USERNAME
-          value: devdb
-        - name: MONGO_DB_PASSWORD
-          value: devdb@123
-        - name: MONGO_DB_HOSTNAME
-          value: mongo
+        # env:
+# - name: MONGO_DB_USERNAME
+#   value: devdb
+# - name: MONGO_DB_PASSWORD
+#   value: devdb@123
+# - name: MONGO_DB_HOSTNAME
+#   value: mongo
 ---
 apiVersion: v1
 kind: PersistentVolumeClaim
@@ -37,8 +37,8 @@ spec:
   - ReadWriteOnce
   resources:
     requests:
-      storage: 2Gi # Adjust size as per your requirements and AWS storage class limitations
-  storageClassName: gp2 # Replace with your AWS storage class name
+      storage: 2Gi
+  storageClassName: gp2
 
 ---
 apiVersion: apps/v1
@@ -73,7 +73,6 @@ spec:
       - name: mongodb-data
         persistentVolumeClaim:
           claimName: mongodb-pvc
-
 ---
 apiVersion: v1
 kind: Service
